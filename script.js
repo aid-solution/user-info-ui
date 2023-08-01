@@ -46,7 +46,7 @@ userForm.addEventListener("submit", async(e) => {
       location.reload();
     }
 
-    alert("L'email exite, vous avez déjà fait enregistré");
+    alert("L'email exite, vous êtes déjà fait enregistré");
     location.reload();
   }
 });
