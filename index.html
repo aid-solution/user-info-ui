@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Info</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="main">
+    <div class="container">
+      <div>
+        <h1>User Info</h1>
+      <form id="user-form">
+        <div class="form-group">
+          <label for="name">FullName</label>
+          <input type="text" id="name" class="form-control">
+          <span id="name-error" class="error"></span>
+        </div>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="text" id="email" class="form-control">
+          <span id="email-error" class="error"></span>
+        </div>
+        <div class="form-group">
+          <label for="birthday">Birthday</label>
+          <input type="date" id="birthday" class="form-control" min="1980-01-01" max="2005-01-01">
+          <span id="birthday-error" class="error"></span>
+        </div>
+        <div class="form-group">
+          <label for="">Level of study</label>
+          <div class="choice">
+            <div class="check">
+              <label for="level0">Secondary</label>
+              <input type="radio" id="level0" name="level">
+            </div>
+            <div class="check">
+              <label for="level1">University</label>
+              <input type="radio" id="level1" name="level">
+            </div>
+          </div>
+          <span id="choice-error"></span>
+        </div>
+        <div id="level-content"></div>
+        <div class="form-group">
+          <input type="submit" value="Envoyer" class="btn">
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+  <script src="./api.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
