@@ -35,6 +35,10 @@ userForm.addEventListener("submit", async(e) => {
   error.splice(0, error.length);
   const userInfo = checkAllData();
   if(error.length === 0) {
+    const div = document.createElement("div");
+    div.setAttribute("class", "onSubmit");
+    const container = document.querySelector(".container");
+    container.insertAdjacentElement("afterend", div)
     userForm.setAttribute("disable", true);
     userInfo.username = userInfo.name;
     delete userInfo.name;
@@ -44,8 +48,7 @@ userForm.addEventListener("submit", async(e) => {
     const filter = datas.filter(data => data.email === userInfo.email);
     if(checkEmail.length === 1) {
       if(filter.length === 0) {
-        console.log(checkEmail);
-        //await saveData("cs", userInfo);
+        await saveData("cs", userInfo);
         alert("Données enregistrées avec success");
         location.reload();
         return;
@@ -54,6 +57,7 @@ userForm.addEventListener("submit", async(e) => {
       location.reload();
       return;
     }
+    div.remove();
     email.value = "";
     alert("L'email fourni n'existe pas dans notre base de donées");
   }
