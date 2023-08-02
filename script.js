@@ -39,15 +39,23 @@ userForm.addEventListener("submit", async(e) => {
     userInfo.username = userInfo.name;
     delete userInfo.name;
     const datas = await getData("cs");
+    const piscine = await getData("piscine");
+    const checkEmail = piscine.filter(data => data.Email === userInfo.email);
     const filter = datas.filter(data => data.email === userInfo.email);
-    if(filter.length === 0) {
-      await saveData("cs", userInfo);
-      alert("Données enregistrées avec success");
+    if(checkEmail.length === 1) {
+      if(filter.length === 0) {
+        console.log(checkEmail);
+        //await saveData("cs", userInfo);
+        alert("Données enregistrées avec success");
+        location.reload();
+        return;
+      }
+      alert("L'email exite, vous êtes déjà fait enregistré");
       location.reload();
+      return;
     }
-
-    alert("L'email exite, vous êtes déjà fait enregistré");
-    location.reload();
+    email.value = "";
+    alert("L'email fourni n'existe pas dans notre base de donées");
   }
 });
 
