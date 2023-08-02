@@ -13,7 +13,7 @@ const getData = async(table, index=-1) => {
 }
 
 const saveData = async(table, datas, index=-1) => {
-  const url =  index !== -1 ? `${constantUrl}/${table}/${index}` : `${constantUrl}/${table}`;
+  const url =  index === -1 ? `${constantUrl}/${table}` : `${constantUrl}/${table}/${index}`;
   const method  = index !== -1 ? "PUT" : "POST";
   const option = {
     headers: {

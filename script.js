@@ -1,6 +1,7 @@
 const username = document.querySelector("#name");
 const email = document.querySelector("#email");
 const birthday = document.querySelector("#birthday");
+const biography = document.querySelector("#biography");
 const level0 = document.querySelector("#level0");
 const level1 = document.querySelector("#level1");
 const content = document.querySelector("#level-content");
@@ -17,8 +18,9 @@ const error = [], allLevel = ["BTS", "Licence", "Master"];
 username.addEventListener("change", () => inputChange(username));
 email.addEventListener("change", () => inputChange(email));
 birthday.addEventListener("change", () => inputChange(birthday));
+biography.addEventListener("change", () => inputChange(biography));
 
-userForm.addEventListener("submit", async(e) => {
+userForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   document.querySelector(`#choice-error`).textContent = "";
   if (!submitBoolean) submitBoolean = true;
@@ -34,33 +36,7 @@ userForm.addEventListener("submit", async(e) => {
   }
   error.splice(0, error.length);
   const userInfo = checkAllData();
-  if(error.length === 0) {
-    const div = document.createElement("div");
-    div.setAttribute("class", "onSubmit");
-    const container = document.querySelector(".container");
-    container.insertAdjacentElement("afterend", div)
-    userForm.setAttribute("disable", true);
-    userInfo.username = userInfo.name;
-    delete userInfo.name;
-    const datas = await getData("cs");
-    const piscine = await getData("piscine");
-    const checkEmail = piscine.filter(data => data.Email === userInfo.email);
-    const filter = datas.filter(data => data.email === userInfo.email);
-    if(checkEmail.length === 1) {
-      if(filter.length === 0) {
-        await saveData("cs", userInfo);
-        alert("Données enregistrées avec success");
-        location.reload();
-        return;
-      }
-      alert("L'email exite, vous êtes déjà fait enregistré");
-      location.reload();
-      return;
-    }
-    div.remove();
-    email.value = "";
-    alert("L'email fourni n'existe pas dans notre base de donées");
-  }
+  if (error.length === 0) submitForm(userInfo);
 });
 
 level0.addEventListener("change", (e) => {
@@ -97,6 +73,36 @@ level1.addEventListener("change", (e) => {
   }
 });
 
+const submitForm = async userInfo => {
+  const div = document.createElement("div");
+  div.setAttribute("class", "onSubmit");
+  const container = document.querySelector(".container");
+  container.insertAdjacentElement("afterend", div)
+  userForm.setAttribute("disable", true);
+  userInfo.username = userInfo.name;
+  delete userInfo.name;
+  const piscine = await getData("piscine");
+  const checkEmail = piscine.filter(data => data.Email === userInfo.email);
+
+  if (checkEmail.length === 1) return userInfoSave(userInfo);
+  div.remove();
+  email.value = "";
+  alert("L'email fourni n'existe pas dans notre base de donées");
+}
+
+const userInfoSave = async userInfo => {
+  const datas = await getData("cs");
+  const filter = datas.filter(data => data.email === userInfo.email);
+  if (filter.length === 0) {
+    await saveData("cs", userInfo, -1);
+    alert("Données enregistrées avec success");
+    location.reload();
+    return;
+  }
+  alert("L'email exite, vous êtes déjà fait enregistré");
+  location.reload();
+}
+
 const addField = (id, text) => {
   const label = document.createElement("label");
   label.setAttribute("for", id);
@@ -122,23 +128,24 @@ const checkAllData = () => {
     name: username.value,
     email: email.value,
     birthday: birthday.value,
+    biography: biography.value,
     level: levelData,
   };
 
   for (const key in obj) {
-    checkNameEmailBirthday(key, obj);
+    checkNameEmailBirthdayDescription(key, obj);
     checkLevelOfStudy(key, obj);
   }
 
   document.querySelector(`#choice-error`).textContent = "";
-  if(level === "") {
+  if (level === "") {
     document.querySelector(`#choice-error`).textContent = "Vous devez choisir le level";
     error.push("choice")
   }
   return obj;
 };
 
-const checkNameEmailBirthday = (key, obj) => {
+const checkNameEmailBirthdayDescription = (key, obj) => {
   let message = "";
   if (
     (key !== "email" && key !== "level" && obj[key] === "") ||
@@ -146,7 +153,7 @@ const checkNameEmailBirthday = (key, obj) => {
   ) {
     message = messageReturn(key);
   }
-  if(message !== "") error.push(key);
+  if (message !== "") error.push(key);
   if (key !== "level") errorMessage(key, message);
 };
 
@@ -157,21 +164,21 @@ const checkLevelOfStudy = (key, obj) => {
       if (obj.level[cle] === "" && cle !== "name") {
         message = "Ce champs est obligatoire";
       }
-  
+
       if (cle === "class" && level === "university" && !allLevel.includes(obj[key][cle])) {
         message = `Votre devez choisir dans la liste deroulante`
       }
 
-      if(cle !== "name") errorMessage(cle, message);
+      if (cle !== "name") errorMessage(cle, message);
 
-      if(message !== "") error.push(cle);
+      if (message !== "") error.push(cle);
     }
   }
 };
 
 const errorMessage = (id, msg) => {
-  if (msg !== "") document.querySelector(`#${id}`).value = ""; 
-  document.querySelector(`#${id}-error`).textContent = msg; 
+  if (msg !== "") document.querySelector(`#${id}`).value = "";
+  document.querySelector(`#${id}-error`).textContent = msg;
 };
 
 const inputChange = (id) => {
@@ -181,11 +188,11 @@ const inputChange = (id) => {
     submitBoolean &&
     (
       (nameId === "email" && !regExpEmail.test(id.value))) ||
-      (nameId !== "email" && id.value === "")
+    (nameId !== "email" && id.value === "")
   ) {
     msg = messageReturn(nameId);
   }
-  if(submitBoolean && nameId === "class" && level === "university" && !allLevel.includes(id.value)) {
+  if (submitBoolean && nameId === "class" && level === "university" && !allLevel.includes(id.value)) {
     msg = `Votre devez choisir dans la liste deroulante`;
   }
 
@@ -196,6 +203,6 @@ const messageReturn = (key) => {
   return key === "birthday"
     ? "Vous devez saisir une date"
     : key === "email"
-    ? "Vous devez saisir une adresse email"
-    : "Ce champs est obligatoire";
+      ? "Vous devez saisir une adresse email"
+      : "Ce champs est obligatoire";
 }
