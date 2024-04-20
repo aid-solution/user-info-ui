@@ -1,36 +1,13 @@
-.calcul {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 10px;
+body {
 	width: 100%;
-	border-top: 2px solid var(--black);
-	margin-top: 10px;
-	padding: 10px 0px;
-}
-
-.calcul .calcul-item.action {
-	width: 2%;
-	display: flex;
-	justify-content: center;
-	color: var(--green-dark);
-	cursor: pointer;
-}
-
-.calcul .calcul-item.action:hover {
-	color: var(--green);
-}
-
-.calcul .calcul-item:nth-child(2) {
-	width: 96%;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	color: var(--white);
+	color: black;
 	text-transform: uppercase;
 }
 
-.calcul .flex {
+.flex {
 	width: 100%;
 	height: 100%;
 	display: flex;
@@ -38,12 +15,12 @@
 	align-items: flex-start;
 }
 
-.calcul .flex .flex-item {
+.flex .flex-item {
 	width: 100% !important;
 	height: 100%;
 }
 
-.calcul .bordered {
+.bordered {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -52,92 +29,92 @@
 
 
 
-.calcul .bordered, .calcul .bordered .flex .flex-item, .calcul .bordered table th, .calcul .bordered table td {
-	color: var(--white);
-  border-left: 2px dashed var(--white);
-  border-right: 2px dashed var(--white);
-	border-top: 2px solid var(--white);
-	border-bottom: 2px solid var(--white);
+.bordered, .bordered .flex .flex-item, .bordered table th, .bordered table td {
+	color: black;
+  border-left: 2px dashed black;
+  border-right: 2px dashed black;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
   border-collapse: collapse;
   margin: 0px;
 	padding: 2px 3px;
 }
 
-.calcul .bordered table {
+.bordered table {
 	width: 100%;
 }
 
-.calcul .bordered table#entente-gains-retenues {
+.bordered table#entente-gains-retenues {
 	align-items: flex-end !important;
 	height: 60px;
 }
-.calcul .bordered table#more-info tbody tr {
+.bordered table#more-info tbody tr {
 	height: 150px;
 }
 
-.calcul .bordered table#more-info tbody tr td:nth-child(1) {
+.bordered table#more-info tbody tr td:nth-child(1) {
 	text-align: left;
 	padding-left: 10px;
 }
 
-.calcul .bordered table#more-info tbody tr td {
+.bordered table#more-info tbody tr td {
 	text-align: center;
 }
-.calcul .bordered table#entente-gains-retenues thead th h4{
+.bordered table#entente-gains-retenues thead th h4{
 	letter-spacing: 2em;
 }
 
-.calcul .bordered table th, .calcul .bordered table td {
+.bordered table th, .bordered table td {
 	padding: 5px 0px;
 }
 
-.calcul .bordered .gains-retenues table tbody tr td {
+.bordered .gains-retenues table tbody tr td {
 	height: 400px !important;
 }
 
-.calcul .bordered .gains-retenues table td {
+.bordered .gains-retenues table td {
 	padding: 0px !important;
 }
 
-.calcul .bordered table tbody.gains tr td {
+.bordered table tbody.gains tr td {
 	font-weight: 400;
 	text-align: center;
 }
 
-.calcul .bordered table tbody.gains tr:first-child td {
-	border-top: 1px solid var(--white) !important;
+.bordered table tbody.gains tr:first-child td {
+	border-top: 1px solid black !important;
 	padding-top: 5px !important;
 }
-.calcul .bordered table tbody.gains tr:last-child td {
-	border-bottom: 1px solid var(--white) !important;
+.bordered table tbody.gains tr:last-child td {
+	border-bottom: 1px solid black !important;
 	padding-bottom: 5px !important;
 }
 
-.calcul .bordered table tbody.gains tr td {
+.bordered table tbody.gains tr td {
 	border-top: none;
 	border-bottom: none;
 }
 
-.calcul .bordered table tbody.gains tr td.flex h4:nth-child(1) {
+.bordered table tbody.gains tr td.flex h4:nth-child(1) {
 	width: 50%;
 }
-.calcul .bordered table tbody.gains tr td.flex h4:nth-child(2) {
+.bordered table tbody.gains tr td.flex h4:nth-child(2) {
 	width: 20%;
 }
-.calcul .bordered table tbody.gains tr td.flex h4:nth-child(3) {
+.bordered table tbody.gains tr td.flex h4:nth-child(3) {
 	width: 30%;
 }
 
-.calcul .bordered table tbody.center td{
+.bordered table tbody.center td{
 	text-align: center;
 }
 
-.calcul .flex.justify-end {
+.flex.justify-end {
 	display: flex;
 	justify-content: flex-end;
 }
 
-.calcul .flex.justify-center {
+.flex.justify-center {
 	display: flex;
 	justify-content: center;
 }
