@@ -1,10 +1,19 @@
 body {
-	width: 100%;
+	width: 96%;
 	display: flex;
+	justify-content: center;
 	flex-direction: column;
 	gap: 10px;
 	color: black;
 	text-transform: uppercase;
+}
+
+h4{
+	margin: 0px;
+}
+
+table thead tr th,  table thead tr th h4 {
+  width: var(--w);
 }
 
 .flex {
@@ -31,12 +40,12 @@ body {
 
 .bordered, .bordered .flex .flex-item, .bordered table th, .bordered table td {
 	color: black;
-  border-left: 2px dashed black;
-  border-right: 2px dashed black;
+	border-left: 2px dashed black;
+	border-right: 2px dashed black;
 	border-top: 2px solid black;
 	border-bottom: 2px solid black;
-  border-collapse: collapse;
-  margin: 0px;
+	border-collapse: collapse;
+	margin: 0px;
 	padding: 2px 3px;
 }
 
@@ -46,7 +55,8 @@ body {
 
 .bordered table#entente-gains-retenues {
 	align-items: flex-end !important;
-	height: 60px;
+	height: 40px;
+	margin-bottom: 10px
 }
 .bordered table#more-info tbody tr {
 	height: 150px;
@@ -69,11 +79,15 @@ body {
 }
 
 .bordered .gains-retenues table tbody tr td {
-	height: 400px !important;
+	height: 300px !important;
 }
 
 .bordered .gains-retenues table td {
 	padding: 0px !important;
+}
+
+.bordered table tbody.gains {
+	width: 0% !important;
 }
 
 .bordered table tbody.gains tr td {
@@ -111,10 +125,10 @@ body {
 
 .flex.justify-end {
 	display: flex;
-	justify-content: flex-end;
+	justify-content: flex-end !important;
 }
 
 .flex.justify-center {
 	display: flex;
-	justify-content: center;
+	justify-content: center !important;
 }
